@@ -63,6 +63,5 @@ public class AddNewBus {
 		catch (InputMismatchException e) {
 			System.out.println(ConsoleColor.RED_BACKGROUND + "Invalid input" + ConsoleColor.RESET);
 		}
-		//sc.close();
     }
 }

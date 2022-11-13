@@ -26,6 +26,5 @@ public static void updateStatus() {
 		if (flag) System.out.println(ConsoleColor.GREEN_BACKGROUND + result + ConsoleColor.RESET);
 		else System.out.println(ConsoleColor.RED_BACKGROUND + result + ConsoleColor.RESET);
 		
-		sc.close();
 	}
 }

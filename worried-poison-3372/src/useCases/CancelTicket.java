@@ -33,6 +33,5 @@ public class CancelTicket {
 		} catch (BusException e) {
 			System.out.println(ConsoleColor.RED_BACKGROUND + e.getMessage() + ConsoleColor.RESET);
 		}
-	//sc.close();
 	}
 }

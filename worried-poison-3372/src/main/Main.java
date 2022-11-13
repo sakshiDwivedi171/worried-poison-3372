@@ -17,11 +17,11 @@ import useCases.UpdateStats;
 public class Main {
 	
 	static void AdminOrCustomer() {
-		System.out.println(ConsoleColor.PURPLE + "+---------------------------+" + "\n"
-						 						   + "| 1. Login As Administrator |" + "\n"
-						 						   + "| 2. Login As Customer      |" + "\n"
-						 						   + "| 3. Exit                   |" + "\n"
-						 						   + "+---------------------------+" + ConsoleColor.RESET);
+		System.out.println( "+---------------------------+" + "\n"
+						  + "| 1. Login As Administrator |" + "\n"
+						  + "| 2. Login As Customer      |" + "\n"
+						  + "| 3. Exit                   |" + "\n"
+						  + "+---------------------------+" );
 		choice();
 	}
 	
@@ -66,14 +66,14 @@ public class Main {
 	}
 	
 	static void adminMethods() {
-		System.out.println(ConsoleColor.PURPLE + "+--------------------------------+" + "\n"
+		System.out.println("+--------------------------------+" + "\n"
 						 + "| Welcome Admin                  |" + "\n"
 						 + "| 1. Add Bus                     |" + "\n"
 						 + "| 2. Confirm Tickets of Customer |" + "\n"
 						 + "| 3. View All Bookings           |" + "\n"
 						 + "| 4. Back                        |" + "\n"
 						 + "| 5. Exit                        |" + "\n"
-						 + "+--------------------------------+" + ConsoleColor.RESET);
+						 + "+--------------------------------+");
 		
 		Scanner sc = new Scanner(System.in);
 		
@@ -121,12 +121,12 @@ public class Main {
 	}
 	
 	static void customerLoginOrSignup() {
-		System.out.println(ConsoleColor.PURPLE + "+--------------------------------+" + "\n"
-				                                + "| 1. Login to your Account       |" + "\n"
-				                                + "| 2. Don't have Account? Sign Up |" + "\n"
-				                                + "| 3. Back                        |" + "\n"
-				                                + "| 4. Exit                        |" + "\n"
-				                                + "+--------------------------------+" + ConsoleColor.RESET);
+		System.out.println( "+--------------------------------+" + "\n"
+				             + "| 1. Login to your Account       |" + "\n"
+				             + "| 2. Don't have Account? Sign Up |" + "\n"
+				             + "| 3. Back                        |" + "\n"
+				             + "| 4. Exit                        |" + "\n"
+				             + "+--------------------------------+" );
 		try {
 			Scanner sc = new Scanner(System.in);
 			int choice = sc.nextInt();
@@ -182,13 +182,13 @@ public class Main {
 	}
 	
 	static void customerMethods(Customers customer) {
-		System.out.println(ConsoleColor.PURPLE + "+--------------------------------+" + "\n"
+		System.out.println("+--------------------------------+" + "\n"
 				 		 + "| 1. Book Bus Ticket             |" + "\n"
 				         + "| 2. Cancel Bus Ticket           |" + "\n"
 				         + "| 3. View Status of your Tickets |" + "\n"
 				         + "| 4. Back                        |" + "\n"
 				         + "| 5. Exit                        |" + "\n"
-				         + "+--------------------------------+" + ConsoleColor.RESET);
+				         + "+--------------------------------+" );
 		
 		Scanner sc = new Scanner(System.in);
 		
@@ -229,7 +229,7 @@ public class Main {
 			customerLoginOrSignup();
 		}
 		case 5 : {
-			System.out.println(ConsoleColor.ROSY_PINK + "Thank you ! Visit again" + ConsoleColor.RESET);
+			System.out.println("Thank you ! Visit again");
 			System.exit(0);
 		}
 	}
