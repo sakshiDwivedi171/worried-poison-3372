@@ -35,7 +35,7 @@
 # Overview of My work 
 ## **ER Diagram**
 <p align="center">
-  <img width="1050" height="800" src="https://github.com/sakshiDwivedi171/worried-poison-3372/blob/main/photos/ER%20diagram.jpeg?raw=true">
+  <img width="900" height="700" src="https://github.com/sakshiDwivedi171/worried-poison-3372/blob/main/photos/ER%20diagram.jpeg?raw=true">
 </p>
 
 ## **Flow Chart**
@@ -51,4 +51,4 @@
 - [Linkedin](https://www.linkedin.com/in/sakshi-dwivedi-0a277b233/)
 # Contributor
 #### Sakshi Dwivedi
->[GitHub](https://github.com/sakshiDwivedi171)
+- [GitHub](https://github.com/sakshiDwivedi171)
