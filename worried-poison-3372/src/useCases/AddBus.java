@@ -30,7 +30,6 @@ public static void AddBus() {
 			System.out.println(ConsoleColor.ORANGE + "Enter Bus Type - AC / NonAC" + ConsoleColor.RESET);
 			String bType = sc.nextLine();
 			
-//			sc.nextLine();
 			System.out.println(ConsoleColor.ORANGE + "Enter Departure date and time in format (YYYY-MM-DD HH:MI:SS)" + ConsoleColor.RESET);
 			String departure = sc.nextLine();
 			
@@ -60,6 +59,5 @@ public static void AddBus() {
 		catch (InputMismatchException e) {
 			System.out.println(ConsoleColor.RED_BACKGROUND + "Invalid input" + ConsoleColor.RESET);
 		}
-//		sc.close();
    }
 }
