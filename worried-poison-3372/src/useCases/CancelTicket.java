@@ -15,13 +15,13 @@ public class CancelTicket {
 		Scanner sc = new Scanner(System.in);
 		
 		System.out.println(ConsoleColor.ORANGE + "Enter Bus Name" + ConsoleColor.RESET);
-		String bName = sc.nextLine();
+		String busName = sc.nextLine();
 		
 		CustomerDAO dao = new CustomerDAOImpl();
 		try {
 			
 			int cusId = customer.getCusId();
-			String message = dao.cancelTicket(bName, cusId);
+			String message = dao.cancelTicket(busName, cusId);
 			
 			if (message.equals("Ticket cancelled Successfully")) {
 				System.out.println(ConsoleColor.GREEN_BACKGROUND + message + ConsoleColor.RESET);

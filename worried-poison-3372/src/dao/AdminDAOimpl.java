@@ -26,8 +26,8 @@ public class AdminDAOimpl implements AdminDAO{
 	}
 
 	@Override
-	public String addBus(int busNo, String bName, String routeFrom, String routeTo, String bType, String arrival,
-			String departure, int totalSeats, int availSeats, int fare) {
+	public String addBus(int busNo, String busName, String route_From, String route_To, String busType, String arrival,
+			String departure, int totalSeats, int availSeats, int cost) {
 		
 String message = "Bus not Added";
 		
@@ -35,15 +35,15 @@ String message = "Bus not Added";
 			PreparedStatement ps = conn.prepareStatement("insert into bus values (?,?,?,?,?,?,?,?,?,?)");
 			
 			ps.setInt(1, busNo);
-			ps.setString(2, bName);
-			ps.setString(3, routeFrom);
-			ps.setString(4, routeTo);
-			ps.setString(5, bType);
+			ps.setString(2, busName);
+			ps.setString(3, route_From);
+			ps.setString(4, route_To);
+			ps.setString(5, busType);
 			ps.setString(6, arrival);
 			ps.setString(7, departure);
 			ps.setInt(8,totalSeats);
 			ps.setInt(9, availSeats);
-			ps.setInt(10, fare);
+			ps.setInt(10, cost);
 			
 			int x = ps.executeUpdate();
 			
@@ -121,7 +121,7 @@ boolean flag = false;
 				flag = true;
 				
 				System.out.println(ConsoleColor.ROSY_PINK + "----------------------------------------------------" + ConsoleColor.RESET);
-				System.out.println(ConsoleColor.ROSY_PINK + "Bus Id : " + rs1.getInt("bId") + ConsoleColor.RESET);
+				System.out.println(ConsoleColor.ROSY_PINK + "Bus Id : " + rs1.getInt("bookId") + ConsoleColor.RESET);
 				System.out.println(ConsoleColor.ROSY_PINK + "Bus No : " + rs1.getInt("busNo") + ConsoleColor.RESET);
 				System.out.println(ConsoleColor.ROSY_PINK + "Total tickets : " + (rs1.getInt("seatTo") - rs1.getInt("seatFrom") + 1) + ConsoleColor.RESET);
 				if (rs1.getInt("status") == 1) System.out.println(ConsoleColor.ROSY_PINK + "Status : Booked" + ConsoleColor.RESET);

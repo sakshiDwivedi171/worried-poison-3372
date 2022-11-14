@@ -16,20 +16,20 @@ public class CustomerDAOImpl implements CustomerDAO{
 
 	@Override
 	public String cusSignUp(String username, String password, String firstName, String lastName, String address,
-			String mobile) {
+			String PhNo) {
 			
 			String message = "Sign up Failed";
 			
 			try(Connection conn = Util.provideConnection()){
 				
-				PreparedStatement ps =  conn.prepareStatement("insert into customer(username, password, firstName, lastName, address, mobile) values (?,?,?,?,?,?)");
+				PreparedStatement ps =  conn.prepareStatement("insert into customer(username, password, firstName, lastName, address, PhNo) values (?,?,?,?,?,?)");
 				
 				ps.setString(1, username);
 				ps.setString(2, password);
-				ps.setString(3,  firstName);
-				ps.setString(4,  lastName);
-				ps.setString(5,  address);
-				ps.setString(6,  mobile);
+				ps.setString(3, firstName);
+				ps.setString(4, lastName);
+				ps.setString(5, address);
+				ps.setString(6, PhNo);
 				
 				int x = ps.executeUpdate();
 				
@@ -50,7 +50,7 @@ public class CustomerDAOImpl implements CustomerDAO{
 		
 		try(Connection conn = Util.provideConnection()){
 			
-			PreparedStatement ps =  conn.prepareStatement("insert into customer(username, password, firstName, lastName, address, mobile) values (?,?,?,?,?,?)");
+			PreparedStatement ps =  conn.prepareStatement("insert into customer(username, password, firstName, lastName, address, PhNo) values (?,?,?,?,?,?)");
 			
 			ps.setString(1, customer.getUsername());
 			ps.setString(2, customer.getPassword());
@@ -92,9 +92,9 @@ public class CustomerDAOImpl implements CustomerDAO{
 				String firstName = rs.getString("firstName");		
 				String lastName = rs.getString("lastName");			
 				String address = rs.getString("address");			
-				String mobile = rs.getString("mobile");
+				String PhNo = rs.getString("PhNo");
 				
-				customer = new Customers(cusId,usernamee, passwordd, firstName, lastName, address, mobile);
+				customer = new Customers(cusId,usernamee, passwordd, firstName, lastName, address, PhNo);
 				
 			}
 			else {
@@ -111,24 +111,24 @@ public class CustomerDAOImpl implements CustomerDAO{
 	}
 
 	@Override
-	public String bookTicket(String bName, int cusId, int no) throws BusException {
+	public String bookTicket(String busName, int cusId, int no) throws BusException {
 		
 String message = "Ticket Booking fail";
 		
 		try (Connection conn = Util.provideConnection()){
 			
-			PreparedStatement ps = conn.prepareStatement("select * from bus where bName = ?");
-			ps.setString(1, bName);
+			PreparedStatement ps = conn.prepareStatement("select * from bus where busName = ?");
+			ps.setString(1, busName);
 			
 			ResultSet rs = ps.executeQuery();
 			
 			if (rs.next()) {
 				
 				int busNo = rs.getInt("busNo");
-				int totalSeats = rs.getInt("totalSeats");
-				int availSeats = rs.getInt("availSeats");
+				int totalSeat = rs.getInt("totalSeat");
+				int AvailableSeat = rs.getInt("AvailableSeat");
 				Date departure = rs.getDate("departure");
-				int fare = rs.getInt("fare");
+				int cost = rs.getInt("cost");
 				
 				PreparedStatement ps1 = conn.prepareStatement("select datediff(?,current_date()) as date");
 				ps1.setDate(1, (java.sql.Date) departure);
@@ -142,10 +142,10 @@ String message = "Ticket Booking fail";
 				if (days <= 0) {
 					throw new BusException("Booking is not available for this date");
 				}
-				else if (availSeats >= no) {
-					int seatFrom = totalSeats - availSeats + 1;
+				else if (AvailableSeat >= no) {
+					int seatFrom = totalSeat - AvailableSeat + 1;
 					int seatTo = seatFrom + no -1;
-					fare = fare * no;
+					cost = cost * no;
 					
 					PreparedStatement ps2 = conn.prepareStatement("insert into booking(cusId, busNo, seatFrom, seatTo) values (?, ?, ?, ?)");
 					ps2.setInt(1, cusId);
@@ -157,9 +157,9 @@ String message = "Ticket Booking fail";
 
 					if (x > 0) {
 						
-						PreparedStatement ps3 = conn.prepareStatement("update bus set availseats = ? where busNo = ?");
-						availSeats = availSeats - no;
-						ps3.setInt(1, availSeats);
+						PreparedStatement ps3 = conn.prepareStatement("update bus set AvailableSeat = ? where busNo = ?");
+						AvailableSeat = AvailableSeat - no;
+						ps3.setInt(1, AvailableSeat);
 						ps3.setInt(2, busNo);
 						int y = ps3.executeUpdate();
 						
@@ -170,7 +170,7 @@ String message = "Ticket Booking fail";
 																   + "Customer Id is : " + cusId + "\n"
 																   + "Bus No is : " + busNo + "\n"
 																   + "Seat No is from : " + seatFrom + " to " + seatTo + "\n"
-																   + "Bus fare is : " + fare + "\n"
+																   + "Bus cost is : " + cost + "\n"
 																   + "Booking yet to be confirm by Adminstrator" + "\n" 
 																   + "---------------------------------------------" + ConsoleColor.RESET);
 						
@@ -181,7 +181,7 @@ String message = "Ticket Booking fail";
 	
 			}
 			else {
-				throw new BusException("Bus with " + bName + " is not available");
+				throw new BusException("Bus with " + busName + " is not available");
 			}
 			
 		}
@@ -193,21 +193,21 @@ String message = "Ticket Booking fail";
 	}
 
 	@Override
-	public String cancelTicket(String bName, int cusId) throws BusException {
+	public String cancelTicket(String busName, int cusId) throws BusException {
 		
 String message = "Ticket cancellation failed";
 		
 		try (Connection conn = Util.provideConnection()){
 				
-				PreparedStatement ps = conn.prepareStatement("select * from bus where bName = ?");
-				ps.setString(1, bName);
+				PreparedStatement ps = conn.prepareStatement("select * from bus where busName = ?");
+				ps.setString(1, busName);
 				
 				ResultSet rs = ps.executeQuery();
 				
 				if (rs.next()) {
 					
 					int busNo = rs.getInt("busNo");
-					int availSeats = rs.getInt("availSeats");
+					int AvailableSeat = rs.getInt("AvailableSeat");
 					
 					PreparedStatement ps1 = conn.prepareStatement("select * from booking where busNo = ? and cusId = ?");
 					ps1.setInt(1, busNo);
@@ -233,9 +233,9 @@ String message = "Ticket cancellation failed";
 						int x = ps2.executeUpdate();
 						if (x > 0) {
 							
-							PreparedStatement ps3 = conn.prepareStatement("update bus set availseats = ? where busNo = ?");
-							availSeats = availSeats + count;
-							ps3.setInt(1, availSeats);
+							PreparedStatement ps3 = conn.prepareStatement("update bus set AvailableSeat = ? where busNo = ?");
+							AvailableSeat = AvailableSeat + count;
+							ps3.setInt(1, AvailableSeat);
 							ps3.setInt(2, busNo);
 							int y = ps3.executeUpdate();
 							
@@ -249,7 +249,7 @@ String message = "Ticket cancellation failed";
 		
 				}
 				else {
-					throw new BusException("Bus with " + bName + " is not available");
+					throw new BusException("Bus with " + busName + " is not available");
 				}
 				
 			}

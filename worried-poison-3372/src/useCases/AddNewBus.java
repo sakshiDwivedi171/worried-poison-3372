@@ -20,7 +20,7 @@ public class AddNewBus {
 			int busNo = sc.nextInt();
 			
 			System.out.println(ConsoleColor.ORANGE + "Enter bus name" + ConsoleColor.RESET);
-			String bName = sc.next();
+			String busName = sc.next();
 			
 			System.out.println(ConsoleColor.ORANGE + "Enter Route from" + ConsoleColor.RESET);
 			String routeFrom = sc.next();
@@ -29,7 +29,7 @@ public class AddNewBus {
 			String routeTo = sc.next();
 			
 			System.out.println(ConsoleColor.ORANGE + "Enter Bus Type - AC / NonAC" + ConsoleColor.RESET);
-			String bType = sc.next();
+			String busType = sc.next();
 			
 			sc.nextLine();
 			System.out.println(ConsoleColor.ORANGE + "Enter Departure date and time in format (YYYY-MM-DD HH:MI:SS)" + ConsoleColor.RESET);
@@ -47,7 +47,7 @@ public class AddNewBus {
 			System.out.println(ConsoleColor.ORANGE + "Enter fare" + ConsoleColor.RESET);
 			int fare = sc.nextInt();
 			
-			Bus bus = new Bus(busNo, bName, routeFrom, routeTo, bType, departure, arrival, totalSeats, availSeats, fare);
+			Bus bus = new Bus(busNo, busName, routeFrom, routeTo, busType, departure, arrival, totalSeats, availSeats, fare);
 			
 			AdminDAO dao = new AdminDAOimpl();
 			

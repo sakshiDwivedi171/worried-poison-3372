@@ -8,7 +8,7 @@ public class Customers {
 	private String firstName;	
 	private String lastName;	
 	private String address;	
-	private String mobile;
+	private String PhNo;
 	
 	
 	
@@ -16,7 +16,7 @@ public class Customers {
 	@Override
 	public String toString() {
 		return "Customers [cusId=" + cusId + ", username=" + username + ", password=" + password + ", firstName="
-				+ firstName + ", lastName=" + lastName + ", address=" + address + ", mobile=" + mobile + "]";
+				+ firstName + ", lastName=" + lastName + ", address=" + address + ", mobile=" + PhNo + "]";
 	}
 	
 	public int getCusId() {
@@ -56,10 +56,10 @@ public class Customers {
 		this.address = address;
 	}
 	public String getMobile() {
-		return mobile;
+		return PhNo;
 	}
 	public void setMobile(String mobile) {
-		this.mobile = mobile;
+		this.PhNo = mobile;
 	}
 
 	public Customers(int cusId, String username, String password, String firstName, String lastName, String address,
@@ -71,7 +71,7 @@ public class Customers {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.address = address;
-		this.mobile = mobile;
+		this.PhNo = mobile;
 	}
 
 }

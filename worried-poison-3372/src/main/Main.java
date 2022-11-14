@@ -17,6 +17,9 @@ import useCases.UpdateStats;
 public class Main {
 	
 	static void AdminOrCustomer() {
+		System.out.println("                   ");
+		System.out.println(ConsoleColor.GREEN + "*****************!! Welcome to the Busy Bus Service !!**************" + ConsoleColor.RESET);
+		System.out.println("                   ");
 		System.out.println( "+---------------------------+" + "\n"
 						  + "| 1. Login As Administrator |" + "\n"
 						  + "| 2. Login As Customer      |" + "\n"
@@ -57,7 +60,7 @@ public class Main {
 	
 	static void AdminLogin() {
 		
-		Boolean result = useCases.AdminLogin.AdminLogin();//*****************************************see
+		Boolean result = useCases.AdminLogin.AdminLogin();
 
 		if (result) adminMethods();
 		else {
@@ -229,7 +232,7 @@ public class Main {
 			customerLoginOrSignup();
 		}
 		case 5 : {
-			System.out.println("Thank you ! Visit again");
+			System.out.println("******************!! Thank you ! Visit again !!**********************");
 			System.exit(0);
 		}
 	}

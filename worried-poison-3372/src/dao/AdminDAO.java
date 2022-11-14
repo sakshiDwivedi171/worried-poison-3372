@@ -10,8 +10,8 @@ public interface AdminDAO {
 
 	public String adminLogin(String username, String password);
 	
-	public String addBus(int busNo, String bName, String routeFrom, String routeTo, String bType, String arrival, String departure,
-			int totalSeats, int availSeats, int fare);
+	public String addBus(int busNo, String busName, String route_From, String route_To, String busType, String arrival, String departure,
+			int totalSeats, int availSeats, int cost);
 	
 	public String addBus(Bus bus);
 	
